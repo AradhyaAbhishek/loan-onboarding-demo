@@ -10,6 +10,7 @@
         <version>1.0.0</version>
     </parent>
 
+
     <artifactId>loan-request-service</artifactId>
     <packaging>jar</packaging>
 
@@ -47,7 +48,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <optional>true</optional>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -67,6 +68,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
         </plugins>
     </build>
 </project>

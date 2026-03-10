@@ -1,27 +1,38 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>com.myloanprocess</groupId>
     <artifactId>loan-onboarding-demo</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
+    <!-- ================= MODULES ================= -->
+
     <modules>
         <module>common-library</module>
         <module>loan-request-service</module>
         <module>task-service</module>
-        <!-- later we’ll add task-service, workflow-service -->
     </modules>
+
+    <!-- ================= PROPERTIES ================= -->
 
     <properties>
         <java.version>17</java.version>
         <spring.boot.version>3.3.2</spring.boot.version>
+        <lombok.version>1.18.34</lombok.version>
+        <spring.kafka.version>3.1.2</spring.kafka.version>
     </properties>
+
+    <!-- ================= DEPENDENCY MANAGEMENT ================= -->
 
     <dependencyManagement>
         <dependencies>
+
+            <!-- Spring Boot BOM -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -29,17 +40,56 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <!-- Lombok -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!-- Kafka -->
+            <dependency>
+                <groupId>org.springframework.kafka</groupId>
+                <artifactId>spring-kafka</artifactId>
+                <version>${spring.kafka.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
+    <!-- ================= BUILD ================= -->
+
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                </plugin>
-            </plugins>
-        </pluginManagement>
+        <plugins>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.boot.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+
+                </configuration>
+            </plugin>
+
+        </plugins>
     </build>
+
 </project>
