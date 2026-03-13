@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,7 +15,5 @@ public class LoanCreatedEvent {
 
 	private String requestId;
 	private String customerName;
-	private double amount;
-	private String status;
-
+	private BigDecimal amount;
 }

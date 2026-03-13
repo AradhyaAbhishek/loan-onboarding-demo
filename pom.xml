@@ -16,6 +16,7 @@
         <module>common-library</module>
         <module>loan-request-service</module>
         <module>task-service</module>
+        <module>workflow-service</module>
     </modules>
 
     <!-- ================= PROPERTIES ================= -->
@@ -24,7 +25,6 @@
         <java.version>17</java.version>
         <spring.boot.version>3.3.2</spring.boot.version>
         <lombok.version>1.18.34</lombok.version>
-        <spring.kafka.version>3.1.2</spring.kafka.version>
     </properties>
 
     <!-- ================= DEPENDENCY MANAGEMENT ================= -->
@@ -47,13 +47,6 @@
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
                 <scope>provided</scope>
-            </dependency>
-
-            <!-- Kafka -->
-            <dependency>
-                <groupId>org.springframework.kafka</groupId>
-                <artifactId>spring-kafka</artifactId>
-                <version>${spring.kafka.version}</version>
             </dependency>
 
         </dependencies>
@@ -88,7 +81,6 @@
 
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 
